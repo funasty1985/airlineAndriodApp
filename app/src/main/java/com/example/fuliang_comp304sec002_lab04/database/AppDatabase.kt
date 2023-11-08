@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.fuliang_comp304sec002_lab04.database.flightSchedule.Schedule
 import com.example.fuliang_comp304sec002_lab04.database.flightSchedule.ScheduleDao
 
-@Database(entities = arrayOf(Schedule::class), version=1)
+@Database(entities = arrayOf(Schedule::class), version=2)
 abstract class AppDatabase: RoomDatabase() {
 
     abstract fun scheduleDao(): ScheduleDao
@@ -22,10 +22,10 @@ abstract class AppDatabase: RoomDatabase() {
                     context,
                     AppDatabase::class.java,
                     "app_database")
-//                    .createFromAsset("database/app_database.db") we don't have this database
+//                    .fallbackToDestructiveMigration()
+                    .createFromAsset("database/app_database.db")
                     .build()
                 INSTANCE = instance
-
                 instance
             }
         }

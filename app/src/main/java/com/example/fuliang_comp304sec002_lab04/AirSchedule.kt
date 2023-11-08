@@ -1,6 +1,5 @@
 package com.example.fuliang_comp304sec002_lab04
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,17 +10,15 @@ import androidx.lifecycle.coroutineScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.fuliang_comp304sec002_lab04.databinding.FullScheduleFragmentBinding
+import com.example.fuliang_comp304sec002_lab04.databinding.AirScheduleFragmentBinding
 import com.example.fuliang_comp304sec002_lab04.viewmodels.FlightScheduleViewModelFactory
 import com.example.fuliang_comp304sec002_lab04.viewmodels.FlightScheduleViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class FullScheduleFragment : Fragment() {
+class AirSchedule : Fragment() {
 
     // data binding
-    private var _binding: FullScheduleFragmentBinding? = null
+    private var _binding: AirScheduleFragmentBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
 
@@ -37,7 +34,7 @@ class FullScheduleFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FullScheduleFragmentBinding.inflate(inflater, container, false)
+        _binding = AirScheduleFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
@@ -50,8 +47,8 @@ class FullScheduleFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         val flightScheduleAdapter = FlightScheduleAdapter({
-            val action = FullScheduleFragmentDirections
-                .actionFullScheduleFragmentToStopScheduleFragment(
+            val action = AirScheduleDirections
+                .actionAirScheduleFragmentToDetailScheduleFragment(
                     airlineName = it.airline
                 )
             view.findNavController().navigate(action)
